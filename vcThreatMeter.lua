@@ -78,11 +78,12 @@ local function UpdateThreatMeter()
 			ClearThreatMeter()
 			break;
 		else
-			hateList[i] = { unitName =unitName, unitHate = unitHate, unitDamage = unitDamage }
-			
-			if(UnitName("pet") == "Centaur Chiron") then
-				if (hateList[i].unitName == UnitName("player")) then
-					aggroPeta = hateList[i].unitDamage * 0.75
+			hateList[i] = { unitName =unitName, unitHate = unitHate, unitDamage = unitDamage } --uzupelnianie tabeli aggro
+			--@@@ jest pomysl, zrobic na podstawie tego addona inny jezeli nie siadzie dodanie do tego kilku funkcji
+			--@@@ z ta roznica ze sort ma sie odbywac po obrazeniach *0.75 i sprawdzic czy inne elementy kodu beda pasowac do tego pomyslu
+			if(UnitName("pet") == "Centaur Chiron") then --czy jest centek zeby TM nie pajacowal bez niego
+				if (hateList[i].unitName == UnitName("player")) then -- czy moj nick zgadza sie z aktualnym nickiem listy
+					aggroPeta = hateList[i].unitDamage * 0.75 --pomniejszenie aggro ze wzgledu na buff
 					DEFAULT_CHAT_FRAME:AddMessage( "Aggro Centa: " .. string.format("%s", CommaValue(hateList[i].unitDamage)))
 				end
 			end
@@ -92,19 +93,19 @@ local function UpdateThreatMeter()
 				greatestHate = unitHate
 			end
 			--DEFAULT_CHAT_FRAME:AddMessage(hateList[i].unitDamage)
-			if(greatestHate - tonumber(aggroPeta) < 4000000 and UnitName("pet") == "Centaur Chiron" )  then
-				--DEFAULT_CHAT_FRAME:AddMessage("Ostrożnie! Cent Blisko Najwyzszego aggro")
+			if(greatestHate - tonumber(aggroPeta) < 4000000 and UnitName("pet") == "Centaur Chiron" )  then --roznica miedzy najwiekszym aggro a centa/ sprawdz czy tonumber
+				--DEFAULT_CHAT_FRAME:AddMessage("Ostrożnie! Cent Blisko Najwyzszego aggro")		--nie tnie stringa w dziwny sposob
 				--SendChatMessage("Ostrożnie! Cent Blisko Najwyzszego aggro","SAY")
-				if(greatestHate - tonumber(aggroPeta) > 0) then
+				if(greatestHate - tonumber(aggroPeta) > 0) then --tak wiem te warunki mozna polaczyc, ale tak bylo latwiej testowac 
 					DEFAULT_CHAT_FRAME:AddMessage("Ostrożnie! Cent Blisko Najwyzszego aggro")
 					--SendChatMessage("Ostrożnie! Cent Blisko Najwyzszego aggro","SAY")
 					DEFAULT_CHAT_FRAME:AddMessage("Za " .. (greatestHate - tonumber(aggroPeta)) .. " przebicie aggro")
-					SendChatMessage("Za " .. string.format("%s",CommaValue(greatestHate - tonumber(aggroPeta))) .. " przebicie aggro", "SAY")
+					SendChatMessage("Za " .. string.format("%s",CommaValue(greatestHate - tonumber(aggroPeta))) .. " przebicie aggro", "SAY") --czy ja tu czegos nie odjebalem?
 				end
 				
 			end
 			if(greatestHate <= tonumber(aggroPeta)) then SendChatMessage("No, i centaur wyjebany. Gratuluje.", "SAY")
-			end
+			end --hehs
 		end
 	until (unitName == nil)
 
