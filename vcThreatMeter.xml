@@ -1,0 +1,202 @@
+<Ui xmlns="http://www.runewaker.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="..\..\worldxml\ui.xsd">
+	<Script file="vcThreatMeter.lua"/>
+
+
+	<StatusBar name="vcThreatMeter_StatusBarTemplate" virtual="true" minValue="0" maxValue="100">
+		<Size>
+			<AbsDimension x="200" y="12"/>
+		</Size>
+		<Layers>
+			<Layer>
+				<Texture file="Interface\Common\Block-Fill">
+					<Color r="0" g="0" b="0" a="0.1"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentText">
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentLeft" inherits="GameTitleFont" justifyH="LEFT" text="">
+							<Size>
+								<AbsDimension x="97" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+							<FontHeight>
+								<AbsValue val="10"/>
+							</FontHeight>
+						</FontString>
+
+						<FontString name="$parentRight" inherits="GameTitleFont" justifyH="RIGHT" text="">
+							<Size>
+								<AbsDimension x="103" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT"/>
+							</Anchors>
+							<FontHeight>
+								<AbsValue val="10"/>
+							</FontHeight>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+		<BarTexture file="Interface\Common\Bar\Smooth"/>
+		<BarColor r="0.5" g="0.5" b="0.5" a="0.5"/>
+	</StatusBar>
+
+
+	<Frame name="vcThreatMeter" hidden="true" parent="UIParent" frameStrata="BACKGROUND" movable="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="210" y="115"/>
+		</Size>
+		<Backdrop bgFile="Interface\Tooltips\Tooltip-Background" edgeFile="Interface\Tooltips\Tooltip-border" tile="true">
+			<BackgroundInsets>
+				<AbsInset top="4" left="4" bottom="4" right="4"/>
+			</BackgroundInsets>
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+		</Backdrop>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="-400" y="75"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Frames>
+			<Frame name="vcThreatMeter_Head">
+				<Size>
+					<AbsDimension x="210" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="vcThreatMeter" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="vcThreatMeter_Title" hidden="false" inherits="GameTitleFont" text="vcThreatMeter">
+							<Size>
+								<AbsDimension x="210" y="20"/>
+							</Size>
+							<FontHeight>
+								<AbsValue val="15"/>
+							</FontHeight>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<Frame name="vcThreatMeter_Body">
+				<Frames>
+					<StatusBar name="vcThreatMeter_Bar1" inherits="vcThreatMeter_StatusBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="vcThreatMeter_Head" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="5" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<!-- BarColor r="1" g="0" b="0"/ -->
+					</StatusBar>
+
+					<StatusBar name="vcThreatMeter_Bar2" inherits="vcThreatMeter_StatusBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="vcThreatMeter_Bar1" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<!-- BarColor r="1" g="0.5" b="0"/ -->
+					</StatusBar>
+
+					<StatusBar name="vcThreatMeter_Bar3" inherits="vcThreatMeter_StatusBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="vcThreatMeter_Bar2" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<!-- BarColor r="1" g="1" b="0"/ -->
+					</StatusBar>
+
+					<StatusBar name="vcThreatMeter_Bar4" inherits="vcThreatMeter_StatusBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="vcThreatMeter_Bar3" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<!-- BarColor r="0" g="1" b="0"/ -->
+					</StatusBar>
+
+					<StatusBar name="vcThreatMeter_Bar5" inherits="vcThreatMeter_StatusBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="vcThreatMeter_Bar4" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<!-- BarColor r="0" g="1" b="1"/ -->
+					</StatusBar>
+
+					<StatusBar name="vcThreatMeter_Bar6" inherits="vcThreatMeter_StatusBarTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="vcThreatMeter_Bar5" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<!-- BarColor r="0" g="0" b="1"/ -->
+					</StatusBar>
+
+
+				</Frames>
+
+			</Frame>
+
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				vcThreatMeter_OnLoad(this)
+			</OnLoad>
+
+			<OnEvent>
+				vcThreatMeter_OnEvent(this, event)
+			</OnEvent>
+
+			<OnUpdate>
+				-- vcThreatMeter_OnUpdate(this, elapsedTime)
+			</OnUpdate>
+
+			<OnMouseDown>
+				if IsShiftKeyDown() then
+					vcThreatMeter:StartMoving("TOPLEFT");
+				end
+			</OnMouseDown>
+
+			<OnMouseUp>
+				vcThreatMeter:StopMovingOrSizing();
+			</OnMouseUp>
+
+		</Scripts>
+	</Frame>
+
+
+</Ui>

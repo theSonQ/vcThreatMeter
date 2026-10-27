@@ -1,0 +1,6 @@
+## Title: vcThreatMeter
+## Version: 1.0.0
+## Notes: A simple standalone threat meter.
+## Author: Valacar
+
+vcThreatMeter.xml
